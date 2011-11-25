@@ -4,7 +4,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-const int MAX_SIZE = 5;
+const int MAX_SIZE = 10000;
 
 struct Queue {
   int elements[MAX_SIZE];
