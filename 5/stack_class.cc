@@ -12,90 +12,94 @@ const int MAX_SIZE = 10000;
 struct Stack {
   int elements[MAX_SIZE];
   int top_index;
-}; // !!
+  
+  Stack() {
+    top_index = 0;
+  }
+  
+  void Clear();
+  int Size();
+  bool Empty();
+  bool Push(int noob);
+  bool Pop(int* r);
+  bool Top(int* result);
+};
 
-void Init(Stack* s) {
-  s->top_index = 0; // something->member <=> (*something).member
+int Stack::Size() {
+  return top_index;
 }
 
-void Clear(Stack* s) {
-  s->top_index = 0;
-}
-
-int Size(Stack* s) {
-  return s->top_index;
-}
-
-bool Empty(Stack* s) {
-  return Size(s) == 0;
+bool Stack::Empty() {
+  return Size() == 0;
 } 
 
 // returns true if ok
 // returns false if stack is full 
-bool Push(Stack* s, int newbie) {
-  if (Size(s) == MAX_SIZE) {
+bool Stack::Push(int newbie) {
+  if (Size() == MAX_SIZE) {
     return false;
   } else {
-    s->elements[s->top_index] = newbie;
-    ++(s->top_index);
+    elements[top_index] = newbie;
+    ++top_index;
     return true;
   }
 }
 
 // returns true if ok
 // return false if stack is empty
-bool Pop(Stack* s, int* result) {
-  if (Empty(s)) {
+bool Stack::Pop(int* result) {
+  if (Empty()) {
     return false;
   } else {
-    *result = s->elements[s->top_index - 1];
-    --(s->top_index);
+    *result = elements[top_index - 1];
+    --(top_index);
     return true;
   }
 }
 
 // returns true if ok
 // return false if stack is empty
-bool Top(Stack* s, int* result) {
-  if (Empty(s)) {
+bool Stack::Top(int* result) {
+  if (Empty()) {
     return false;
   } else {
-    *result = s->elements[s->top_index - 1];
+    *result = elements[top_index - 1];
     return true;
   }
+}
+
+int f() {
+  Stack s1;
+  s1.push(123);
 }
 
 int main() {
-  Stack s;
-  
-  Init(&s);
-  
   for (;;) {
     string query;
     cin >> query;
     if (query == "push") {
       int t;
       cin >> t;
-      Push(&s, t);
+      s.Push(t);
       cout << "ok" << endl;
     } else if (query == "pop") {
       int result;
-      if (!Pop(&s, &result)) {
+      if (!s.Pop(&result)) {
         cout << "error" << endl;
       } else {
         cout << result << endl;
       }
     } else if (query == "back") {
       int result;
-      if (!Top(&s, &result)) {
+      if (!s.Top(&result)) {
         cout << "error" << endl;
       } else {
         cout << result << endl;
       }
     } else if (query == "size") {
-      cout << Size(&s) << endl;
+      cout << s.Size() << endl;
     } else if (query == "clear") {
-      Clear(&s);
+      s.Clear();
       cout << "ok" << endl;
     } else if (query == "exit") {
       cout << "bye" << endl;
