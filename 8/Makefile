@@ -1,0 +1,3 @@
+NAME=bits
+${NAME} : ${NAME}.cc
+	c++ -o ${NAME} ${NAME}.cc
