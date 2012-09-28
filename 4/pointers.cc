@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <string>
 
 using std::cout;
 using std::endl;
@@ -9,6 +10,21 @@ void sep(int n, char c) {
     cout << c;
   }
   cout << endl;
+}
+
+string getBitRepresentation(int x) {
+	int length = 8 * sizeof(x);
+	string result;
+
+	for (int i = 0; i < length; ++i) {
+		if (x & (1 << i)) {
+			result += '1';
+		} else {
+			result += '0';
+		}
+	}
+	
+	return result;
 }
 
 void inc(int* p) {
@@ -77,6 +93,13 @@ int main() {
   // short int == short
   // long int == long
   
+  sep(40, '-');
+  
+  // bit representation
+  cout << getBitRepresentation(97) << endl;
+  // cout << getBitRepresentation(-97) << endl;
+  // cout << getBitRepresentation(-1) << endl;
+
   sep(40, '-');
   
   // pointers
