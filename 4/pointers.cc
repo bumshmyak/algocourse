@@ -33,7 +33,6 @@ void dec(int& x) {
 
 int main() {
   
-  #if 0
   // ++, --
   {
     int a = 10;
@@ -65,7 +64,6 @@ int main() {
        << "float size = " << sizeof(float) << endl
        << "double size = " << sizeof(double) << endl;
   
-  return 0;
   
   // signed/unsigned
   // sizeof(signed T) == sizeof(unsigned T) == sizeof(T)
@@ -152,8 +150,6 @@ int main() {
   }
   
   sep(40, '-');
-  
-  #endif
   
   // arrays
   {
