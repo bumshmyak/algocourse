@@ -1,0 +1,594 @@
+{| class="wikitable"
+|-
+! 
+! Pascal(1970, 1991)
+! C++(1983, 1998, 2011)
+
+|- valign="top"
+| 
+hello world <br />
+(pashello.pas, chello.cpp)
+|
+<syntaxhighlight lang="pascal">
+program hello;
+begin
+  writeln('Hello, Pascal World!');
+end.
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+#include <iostream>
+  
+int main() {
+  std::cout << "Hello, C++ World!" << std::endl;
+  return 0;
+}
+</syntaxhighlight>
+
+|- valign="top"
+| компиляция и запуск
+|
+<syntaxhighlight lang="bash">
+$ fpc hello.pas
+$ ./hello
+</syntaxhighlight>
+|
+<syntaxhighlight lang="bash">
+$ g++ -o hello hello.cpp
+$ ./hello
+</syntaxhighlight>
+
+|- valign="top"
+| "начало и конец", составной оператор
+|
+<syntaxhighlight lang="pascal">
+begin
+...
+end
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+{
+...
+}
+</syntaxhighlight>
+
+|- valign="top"
+| коментарии
+|
+<syntaxhighlight lang="pascal">
+// ваш любимый однострочный коментарий
+{*
+ваш любимый
+многострочный коментарий
+*}
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+// ваш любимый однострочный коментарий
+/*
+ваш любимый
+многострочный коментарий
+*/
+</syntaxhighlight>
+|- valign="top"
+| подключение библиотек
+|
+<syntaxhighlight lang="pascal">
+uses crt, graph;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+#include <iostream>
+#include <magic.h>
+</syntaxhighlight>
+
+|- valign="top"
+|
+встроенные типы данных
+<br />(pastypes.pas, ctypes.cpp)
+|
+<syntaxhighlight lang="pascal">
+var
+b : boolean; 
+c : char;
+n : integer;
+m : longint;
+x : real;
+s : string;
+a : array[1..10] of integer;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+#include <string>
+using std::string;
+...
+
+bool b;
+char c;
+int n;
+long long m;
+double x;
+string s;
+int a[10]; // a[0], ..., a[9]
+</syntaxhighlight>
+
+|- valign="top"
+|
+оператор присваивания
+<br />(pastypes.pas, ctypes.cpp)
+|
+<syntaxhighlight lang="pascal">
+  b := true;
+  c := 'a';
+  n := 1000;
+  m := 1000000000;
+  x := 3.14;
+  s := 'mnogo bykv';
+  a[1] := 5;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+  b = true;
+  c = 'a';
+  n = 1000;
+  m = 1000000000;
+  x = 3.14;
+  s = "mnogo bykv";
+  a[0] = 5;
+</syntaxhighlight>
+
+|- valign="top"
+|
+вывод данных
+<br />(pastypes.pas, ctypes.cpp)
+|
+<syntaxhighlight lang="pascal">
+  writeln('b = ', b, #13, #10,
+          'c = ', c, #13, #10,
+          'n = ', n, #13, #10,
+          'm = ', m,  #13, #10,
+          'x = ', x,  #13, #10,
+          's = ', s,  #13, #10,
+          'a[1] = ', a[1]);
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+  cout << "b = " << b << endl
+       << "c = " << c << endl
+       << "n = " << n << endl
+       << "m = " << m << endl
+       << "x = " << x << endl
+       << "s = " << s << endl
+       << "a[0] = " << a[0] << endl;
+</syntaxhighlight>
+
+|- valign="top"
+|
+ввод данных
+<br />(pasio.pas, cio.cpp)
+|
+<syntaxhighlight lang="pascal">
+  ...
+  readln(a, b);
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+  ...
+  int a, b;
+  cin >> a >> b;
+</syntaxhighlight>
+
+|- valign="top"
+| операторы отношения
+| '''=''' <> < > <= >=
+| '''==''' != < > <= >=
+
+|- valign="top"
+| логические операции
+| and or xor not
+| && || !
+
+|- valign="top"
+| битовые операции
+| shl shr and or xor not
+| << >> & | ^ ~ 
+
+|- valign="top"
+| арифметические операции
+| + - * / div mod
+| + - * / %
+
+|- valign="top"
+| if
+|
+<syntaxhighlight lang="pascal">
+if i > 0 then begin
+  signum := 1;
+end else if i = 0 then begin
+  signum := 0;
+end else begin
+  signum := -1;
+end;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+if (i > 0) {
+  signum = 1;
+} else if (i == 0) {
+  signum = 0;
+} else {
+  signum = -1;
+}
+</syntaxhighlight>
+
+|- valign="top"
+| while
+|
+<syntaxhighlight lang="pascal">
+i := 0;
+while i < 10 do
+begin
+  writeln(i);
+  Inc(i); // i := i + 1
+end
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+int i = 0;
+while (i < 10) {
+  cout << i << endl;
+  i++; // i = i + 1 
+}
+</syntaxhighlight>
+
+|- valign="top"
+| for
+|
+<syntaxhighlight lang="pascal">
+for i := 0 to 9 do
+begin
+  writeln(i);
+end;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+for (i = 0; i < 10; i++) {
+  cout << i << endl;
+}
+</syntaxhighlight>
+
+|- valign="top"
+| константы
+| 
+<syntaxhighlight lang="pascal">
+const // специальный раздел
+  PI = 3.14159;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+const double PI = 3.14159;
+#define ANSWER 42
+</syntaxhighlight>
+
+|- valign="top"
+| пользовательские типы
+| 
+<syntaxhighlight lang="pascal">
+type
+  customer = record
+    id : integer;
+    name : string;
+  end;
+var
+ c : customer;
+begin
+  c.id = 1;
+  c.name = 'Dima';
+end.
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+struct Customer {
+  int id;
+  string name;
+};
+int main() {
+  Customer c;
+  c.id = 1;
+  c.name = "Dima";
+}
+</syntaxhighlight>
+
+|- valign="top"
+|
+Функции
+<br />(pasfunc.pas, cfunc.cpp)
+| 
+<syntaxhighlight lang="pascal">
+function Max(a : integer; b : integer): integer;
+begin
+  if (a > b) then 
+    Max := a
+  else
+    Max := b;
+end;
+...
+// место вызова
+z := Max(x, y);
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+int Max(int a, int b) {
+  if (a > b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+...
+// место вызова
+z := Max(x, y);
+</syntaxhighlight>
+
+
+|- valign="top"
+| 
+процедуры
+<br />(pasproc.pas, cproc.cpp)
+| 
+<syntaxhighlight lang="pascal">
+procedure PrintSeparator(c : char; n : integer);
+var
+  i : integer;
+begin
+  for i := 1 to n do begin
+    write(c);
+  end;
+  writeln;
+end;
+...
+// место вызова
+PrintSeparator('#', 20);
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+void PrintSeparator(char c, int n) {
+  for (int i = 0; i < n; i++) {
+    cout << c;
+  }
+  cout << endl;
+}
+// место вызова
+PrintSeparator('#', 20);
+</syntaxhighlight>
+
+|- valign="top"
+| 
+передача параметров по ссылке
+<br />(pasref.pas, cref.cpp)
+| 
+<syntaxhighlight lang="pascal">
+procedure Swap(var a : integer; var b : integer);
+var
+  c : integer;
+begin
+  c := a;
+  a := b;
+  b := c;
+end;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+void Swap(int& a, int& b) {
+  int c;
+  c = a;
+  a = b;
+  b = c;
+}
+</syntaxhighlight>
+
+|- valign="top"
+|
+передача своих типов
+<br />(pasreftypes.pas, creftypes.cpp)
+| 
+<syntaxhighlight lang="pascal">
+function Accept(var s : Student) : boolean;
+begin
+  if ((s.faculty = 'B') or (s.faculty = 'K'))
+     and (s.grade >= MIN_GRADE) then
+    Accept := true
+  else
+    Accept := false;
+end;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+bool Accept(Student& s) {
+  if ((s.faculty == "B" || s.faculty == "K") 
+      && s.grade >= MIN_GRADE) {
+    return true;
+  } else {
+    return false;
+  }
+}
+</syntaxhighlight>
+
+|- valign="top"
+|
+Массивы в качестве параметров
+<br />(pasreverse.pas, creverse.pas)
+| 
+<syntaxhighlight lang="pascal">
+type 
+  FixedArray = array[1..100] of integer;
+procedure Reverse(var a : FixedArray; n : integer);
+var
+  i : integer;
+begin
+  for i := 1 to n div 2 do
+    Swap(a[i], a[n - i + 1]);
+end;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+void Reverse(int* a, int n) {
+  for (int i = 0; i < n / 2; i++) {
+    Swap(a[i], a[n - i - 1]);
+  }
+}
+</syntaxhighlight>
+
+
+|- valign="top"
+|
+рекурсия
+<br />(pasrec.pas, crec.cpp)
+| 
+<syntaxhighlight lang="pascal">
+function f(n : integer) : integer;
+begin
+  if n = 0 then
+    f := 1
+  else
+    f := n * f(n - 1);
+end;
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+int f(int n) {
+  if (n == 0) {
+    return 1;
+  } else {
+    return n * f(n - 1);
+  }
+}
+</syntaxhighlight>
+
+|- valign="top"
+|
+многомерные массивы
+<br />(pasmatrix.pas, cmatrix.cpp)
+| 
+<syntaxhighlight lang="pascal">
+const
+  N = 3;
+  M = 5;
+
+var
+ a : array[1..N, 1..M] of integer;
+ i, j : integer;
+
+begin
+  for i := 1 to N do
+    for j := 1 to M do
+      a[i,j] := i + j;
+end.
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+const int N = 3;
+const int M = 5;
+
+int main() {
+  int a[N][M];
+  for (int i = 0; i < N; i++) 
+    for (int j = 0; j < M; j++)
+      a[i][j] = i + j;
+  return 0;
+}
+</syntaxhighlight>
+
+
+|- valign="top"
+| Считывание строки целиком
+| 
+<syntaxhighlight lang="pascal">
+readln(s);
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+getline(cin, s);
+</syntaxhighlight>
+
+|- valign="top"
+| Считывание строки до пробела
+| 
+?
+|
+<syntaxhighlight lang="cpp">
+cin >> s;
+</syntaxhighlight>
+
+|- valign="top"
+| сравнение строк
+| лексикографическое(как в словаре)
+| лексикографическое(как в словаре)
+
+|- valign="top"
+| 
+Длина строки
+<br />(passtring.pas, cstring.cpp)
+| 
+<syntaxhighlight lang="pascal">
+length(s);
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+s.length();
+</syntaxhighlight>
+
+|- valign="top"
+|
+Выделение подстроки
+<br />(passtring.pas, cstring.cpp)
+| 
+<syntaxhighlight lang="pascal">
+r := copy(s, from, count); 
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+r = s.substr(from, count);
+</syntaxhighlight>
+
+|- valign="top"
+|
+Удаление подстроки
+<br />(passtring.pas, cstring.cpp)
+| 
+<syntaxhighlight lang="pascal">
+delete(s, from, count);
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+s.erase(from, count);
+</syntaxhighlight>
+
+|- valign="top"
+|
+Поиск подстроки
+<br />(passtring.pas, cstring.cpp)
+| 
+<syntaxhighlight lang="pascal">
+r := pos(substring, s);
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+r = s.find(substring);
+</syntaxhighlight>
+
+|- valign="top"
+|
+Вставка подстроки
+<br />(passtring.pas, cstring.cpp)
+| 
+<syntaxhighlight lang="pascal">
+insert(substring, s, where);
+</syntaxhighlight>
+|
+<syntaxhighlight lang="cpp">
+s.insert(where, substring);
+</syntaxhighlight>
+
+|}
